@@ -1,0 +1,27 @@
+services:
+  web-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env
+    volumes:
+      - ./service:/service
+    command: >
+      sh -c "./manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:15.6
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:      
+      - POSTGRES_USER=dromanov
+      - POSTGRES_DB=dbname
+      - POSTGRES_PASSWORD=dbpassword
+
+volumes:
+  postgres_data:
