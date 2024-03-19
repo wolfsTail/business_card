@@ -28,6 +28,10 @@ class CustomUser(AbstractBaseUser):
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
 
+    class Meta:
+        verbose_name = "Пользователя"
+        verbose_name_plural = "Пользователи"
+
     def __str__(self):
         return f"{self.email} {self.username if self.username else 'Unknown'}"
 
