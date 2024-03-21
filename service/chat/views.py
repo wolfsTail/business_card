@@ -11,7 +11,7 @@ def group_chat(request, uuid):
 
     group = get_object_or_404(Group, uuid=uuid)
     if request.user not in group.members.all():
-        raise Http404("Вы не являетесь членом этой группы")
+        raise Http404
     
     messages = group.messages.order_by("-timestamp")
     events = group.events.order_by("-timestamp")
