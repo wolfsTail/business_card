@@ -49,6 +49,21 @@ class GroupConsumer(AsyncWebsocketConsumer):
                 returned_data
                 ))
 
+    async def event_message(self, event):
+        message = event.get("message")
+        user = event.get("user", None)
+
+        await self.send(
+            json.dumps(
+                {
+                    "type": "event_message",
+                    "message": message,
+                    "status": event.get("status", None),
+                    "user": user
+                }
+            )
+        )
+
 
 class JoinAndLeave(WebsocketConsumer):
 
