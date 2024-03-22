@@ -23,5 +23,9 @@ services:
       - POSTGRES_DB=dbname
       - POSTGRES_PASSWORD=dbpassword
 
+  redis:
+    image: redis:7.2.4-alpine
+    hostname: redis
+
 volumes:
   postgres_data:
